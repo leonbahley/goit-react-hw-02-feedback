@@ -7,17 +7,17 @@ const Statistics = ({
   onCountPositiveFeedbackPercentage,
 }) => {
   return (
-    <ul>
-      <li>
+    <ul className="StatisticsList">
+      <li className="StatisticsItem">
         Good:<span>{goodReview}</span>
       </li>
-      <li>
+      <li className="StatisticsItem">
         Bad:<span>{badReview}</span>
       </li>
-      <li>
+      <li className="StatisticsItem">
         Neutral:<span>{neutralReview}</span>
       </li>
-      <li>
+      <li className="StatisticsItem">
         Total:
         <span>{onCountTotalFeedback}</span>
       </li>

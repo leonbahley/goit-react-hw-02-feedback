@@ -6,3 +6,10 @@ ul {
   display: flex;
   gap: 5px;
 }
+.StatisticsList,
+.Message {
+  font-size: 20px;
+}
+.StatisticsItem {
+  margin-bottom: 10px;
+}
