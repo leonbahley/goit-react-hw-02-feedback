@@ -1,10 +1,9 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
 const SecondSection = ({ title, children }) => {
   return (
     <section>
-      <h2>{title}</h2>
+      <h2 className="Title">{title}</h2>
       {children}
     </section>
   );
@@ -12,5 +11,4 @@ const SecondSection = ({ title, children }) => {
 SecondSection.propTypes = {
   title: PropTypes.string,
 };
-
 export default SecondSection;

@@ -7,17 +7,25 @@ const FeedbackOptions = ({
   return (
     <ul className="BtnList">
       <li>
-        <button type="button" onClick={onhandleGoodReview}>
+        <button
+          className="BtnOption"
+          type="button"
+          onClick={onhandleGoodReview}
+        >
           Good
         </button>
       </li>
       <li>
-        <button type="button" onClick={onhandleNeutralReview}>
+        <button
+          className="BtnOption"
+          type="button"
+          onClick={onhandleNeutralReview}
+        >
           Neutral
         </button>
       </li>
       <li>
-        <button type="button" onClick={onhandleBadReview}>
+        <button className="BtnOption" type="button" onClick={onhandleBadReview}>
           Bad
         </button>
       </li>
