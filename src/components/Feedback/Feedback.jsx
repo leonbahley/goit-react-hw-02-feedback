@@ -5,6 +5,7 @@ import Statistics from './Statistics';
 import FirstSection from './FirstSection';
 import SecondSection from './SecondSection';
 import Notification from './Notification';
+import './Feedback.css';
 
 class Feedback extends Component {
   static defaultProps = {

@@ -5,7 +5,7 @@ const FeedbackOptions = ({
   onhandleBadReview,
 }) => {
   return (
-    <ul>
+    <ul className="BtnList">
       <li>
         <button type="button" onClick={onhandleGoodReview}>
           Good

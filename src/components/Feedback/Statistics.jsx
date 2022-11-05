@@ -18,7 +18,7 @@ const Statistics = ({
         Neutral:<span>{neutralReview}</span>
       </li>
       <li>
-        Tolal:
+        Total:
         <span>{onCountTotalFeedback}</span>
       </li>
       <li>

@@ -1,0 +1,8 @@
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+.BtnList {
+  display: flex;
+  gap: 5px;
+}
