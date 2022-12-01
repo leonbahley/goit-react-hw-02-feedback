@@ -19,23 +19,15 @@ export class App extends Component {
   }
 
   handleReview = e => {
-    if (e.target.dataset.review === 'good') {
-      this.setState(prevState => {
-        return { good: prevState.good + 1 };
-      });
-    }
+    const {
+      target: {
+        dataset: { review },
+      },
+    } = e;
 
-    if (e.target.dataset.review === 'bad') {
-      this.setState(prevState => {
-        return { bad: prevState.bad + 1 };
-      });
-    }
-
-    if (e.target.dataset.review === 'neutral') {
-      this.setState(prevState => {
-        return { neutral: prevState.neutral + 1 };
-      });
-    }
+    this.setState(prevState => {
+      return { [review]: prevState[review] + 1 };
+    });
   };
 
   countTotalFeedback() {
