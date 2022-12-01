@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FeedbackOptions from './Feedback/FeedbackOptions';
 import Statistics from './Feedback/Statistics';
-import FirstSection from './Feedback/FirstSection';
-import SecondSection from './Feedback/SecondSection';
+import Section from './Feedback/Section';
 import Notification from './Feedback/Notification';
-import './Feedback/Feedback.css';
+import css from './Feedback/Feedback.module.css';
 export class App extends Component {
   static propTypes = {
     initialValue: PropTypes.number,
@@ -18,43 +17,51 @@ export class App extends Component {
   updateTotal() {
     return this.state.good;
   }
-  handleGoodReview = () => {
-    this.setState(prevState => {
-      return { good: prevState.good + 1 };
-    });
+
+  handleReview = e => {
+    if (e.target.dataset.review === 'good') {
+      this.setState(prevState => {
+        return { good: prevState.good + 1 };
+      });
+    }
+
+    if (e.target.dataset.review === 'bad') {
+      this.setState(prevState => {
+        return { bad: prevState.bad + 1 };
+      });
+    }
+
+    if (e.target.dataset.review === 'neutral') {
+      this.setState(prevState => {
+        return { neutral: prevState.neutral + 1 };
+      });
+    }
   };
-  handleNeutralReview = () => {
-    this.setState(prevState => {
-      return { neutral: prevState.neutral + 1 };
-    });
-  };
-  handleBadReview = () => {
-    this.setState(prevState => {
-      return { bad: prevState.bad + 1 };
-    });
-  };
+
   countTotalFeedback() {
-    return this.state.neutral + this.state.bad + this.state.good;
+    const totalFeedback = Object.values(this.state).reduce(function (
+      previous,
+      value
+    ) {
+      return previous + value;
+    },
+    0);
+    return totalFeedback;
   }
   countPositiveFeedbackPercentage() {
-    return Math.round(
-      (this.state.good /
-        (this.state.neutral + this.state.bad + this.state.good)) *
-        100
-    );
+    return Math.round((this.state.good / this.countTotalFeedback()) * 100);
   }
   render() {
     return (
-      <div className="FeedbackForm">
-        <FirstSection title="Please leave your feedback">
+      <div className={css.FeedbackForm}>
+        <Section title="Please leave your feedback">
           <FeedbackOptions
-            onhandleBadReview={this.handleBadReview}
-            onhandleGoodReview={this.handleGoodReview}
-            onhandleNeutralReview={this.handleNeutralReview}
+            handleReview={this.handleReview}
+            reviewTypes={Object.keys(this.state)}
           />
-        </FirstSection>
-        <SecondSection title="Statistics">
-          {this.state.neutral + this.state.bad + this.state.good === 0 ? (
+        </Section>
+        <Section title="Statistics">
+          {this.countTotalFeedback() === 0 ? (
             <Notification message="There is no feedback" />
           ) : (
             <Statistics
@@ -65,7 +72,7 @@ export class App extends Component {
               onCountPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage()}
             />
           )}
-        </SecondSection>
+        </Section>
       </div>
     );
   }

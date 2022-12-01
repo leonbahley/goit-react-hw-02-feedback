@@ -1,4 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import css from './Feedback.module.css';
+
 const Statistics = ({
   goodReview,
   badReview,
@@ -7,17 +10,17 @@ const Statistics = ({
   onCountPositiveFeedbackPercentage,
 }) => {
   return (
-    <ul className="StatisticsList">
-      <li className="StatisticsItem">
+    <ul className={css.StatisticsList}>
+      <li className={css.StatisticsItem}>
         Good:<span>{goodReview}</span>
       </li>
-      <li className="StatisticsItem">
+      <li className={css.StatisticsItem}>
         Bad:<span>{badReview}</span>
       </li>
-      <li className="StatisticsItem">
+      <li className={css.StatisticsItem}>
         Neutral:<span>{neutralReview}</span>
       </li>
-      <li className="StatisticsItem">
+      <li className={css.StatisticsItem}>
         Total:
         <span>{onCountTotalFeedback}</span>
       </li>
@@ -28,4 +31,13 @@ const Statistics = ({
     </ul>
   );
 };
+
+Statistics.propTypes = {
+  goodReview: PropTypes.number.isRequired,
+  badReview: PropTypes.number.isRequired,
+  neutralReview: PropTypes.number.isRequired,
+  onCountTotalFeedback: PropTypes.number.isRequired,
+  onCountPositiveFeedbackPercentage: PropTypes.number.isRequired,
+};
+
 export default Statistics;

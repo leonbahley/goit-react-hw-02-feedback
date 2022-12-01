@@ -1,35 +1,29 @@
 import React from 'react';
-const FeedbackOptions = ({
-  onhandleGoodReview,
-  onhandleNeutralReview,
-  onhandleBadReview,
-}) => {
+import PropTypes from 'prop-types';
+import css from './Feedback.module.css';
+
+const FeedbackOptions = ({ handleReview, reviewTypes }) => {
   return (
-    <ul className="BtnList">
-      <li>
-        <button
-          className="BtnOption"
-          type="button"
-          onClick={onhandleGoodReview}
-        >
-          Good
-        </button>
-      </li>
-      <li>
-        <button
-          className="BtnOption"
-          type="button"
-          onClick={onhandleNeutralReview}
-        >
-          Neutral
-        </button>
-      </li>
-      <li>
-        <button className="BtnOption" type="button" onClick={onhandleBadReview}>
-          Bad
-        </button>
-      </li>
+    <ul className={css.BtnList}>
+      {reviewTypes.map(item => (
+        <li key={item}>
+          <button
+            data-review={item}
+            className={css.BtnOption}
+            type="button"
+            onClick={handleReview}
+          >
+            {item}
+          </button>
+        </li>
+      ))}
     </ul>
   );
 };
+
+FeedbackOptions.propTypes = {
+  handleReview: PropTypes.func.isRequired,
+  reviewTypes: PropTypes.array.isRequired,
+};
+
 export default FeedbackOptions;
